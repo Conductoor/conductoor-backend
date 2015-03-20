@@ -4,3 +4,4 @@ __pycache__
 .DS_STORE?
 *.sqlite3
 venv
+staticfiles
