@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,6 +54,7 @@ ROOT_URLCONF = 'conductoor.urls'
 
 WSGI_APPLICATION = 'conductoor.wsgi.application'
 
+AUTH_USER_MODEL = 'users.User'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
