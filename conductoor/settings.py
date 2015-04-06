@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'projects',
     'phases',
     'skills',
+    'allocations',
 )
 
 MIDDLEWARE_CLASSES = (
