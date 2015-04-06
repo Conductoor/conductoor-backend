@@ -1,0 +1,39 @@
+- model: users.User
+  pk: 1
+  fields:
+    email: "tainio.ville@gmail.com"
+    first_name: "Ville"
+    last_name: "Tainio"
+    working_hours: 8
+
+- model: skills.Skill
+  pk: 1
+  fields:
+    name: "Python"
+
+- model: skills.Skill
+  pk: 2
+  fields:
+    name: "JavaScript"
+
+- model: projects.Project
+  pk: 1
+  fields:
+    title: "Test Project"
+    description: "A test project for the API."
+
+- model: phases.Phase
+  pk: 1
+  fields:
+    title: "Development"
+    time_start: 2015-04-06
+    time_end: 2015-04-28
+    project: 1
+
+- model: allocations.Allocation
+  pk: 1
+  fields:
+    phase: 1
+    user: 1
+    skill: 1
+    hours: 40
