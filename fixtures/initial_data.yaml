@@ -1,11 +1,3 @@
-- model: users.User
-  pk: 1
-  fields:
-    email: "tainio.ville@gmail.com"
-    first_name: "Ville"
-    last_name: "Tainio"
-    working_hours: 8
-
 - model: skills.Skill
   pk: 1
   fields:
@@ -15,6 +7,15 @@
   pk: 2
   fields:
     name: "JavaScript"
+
+- model: users.User
+  pk: 1
+  fields:
+    email: "tainio.ville@gmail.com"
+    first_name: "Ville"
+    last_name: "Tainio"
+    working_hours: 8
+    knows: [1]
 
 - model: projects.Project
   pk: 1
