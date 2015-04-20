@@ -1,3 +1,7 @@
+##############
+#   SKILLS   #
+##############
+
 - model: skills.Skill
   pk: 1
   fields:
@@ -8,6 +12,35 @@
   fields:
     name: "JavaScript"
 
+- model: skills.Skill
+  pk: 3
+  fields:
+    name: "PHP"
+
+- model: skills.Skill
+  pk: 4
+  fields:
+    name: "UI Design"
+
+- model: skills.Skill
+  pk: 5
+  fields:
+    name: "Polymer"
+
+- model: skills.Skill
+  pk: 6
+  fields:
+    name: "Reporting"
+
+- model: skills.Skill
+  pk: 7
+  fields:
+    name: "ER modeling"
+
+##############
+#    USERS   #
+##############
+
 - model: users.User
   pk: 1
   fields:
@@ -15,33 +48,186 @@
     first_name: "Ville"
     last_name: "Tainio"
     working_hours: 8
-    knows: [1]
+    knows: [1, 2]
+
+- model: users.User
+  pk: 2
+  fields:
+    email: "teemu.taskula@aalto.fi"
+    first_name: "Teemu"
+    last_name: "Taskula"
+    working_hours: 8
+    knows: [5, 4, 3]
+
+- model: users.User
+  pk: 3
+  fields:
+    email: "ville.j.toiviainen@aalto.fi"
+    first_name: "Ville"
+    last_name: "Toiviainen"
+    working_hours: 8
+    knows: [2, 5, 1]
+
+###############
+#   PROJECTS  #
+###############
 
 - model: projects.Project
   pk: 1
   fields:
-    title: "Test Project"
-    description: "A test project for the API."
+    title: "Conductoor"
+    description: "Creating a resource management tool."
+
+##############
+#   PHASES   #
+##############
 
 - model: phases.Phase
   pk: 1
   fields:
-    title: "Development"
-    time_start: 2015-04-06
-    time_end: 2015-04-28
+    title: "Project plan"
+    time_start: 2015-01-23
+    time_end: 2015-03-08
     project: 1
 
-- model: allocations.Allocation
-  pk: 1
+- model: phases.Phase
+  pk: 2
   fields:
-    phase: 1
-    user: 1
-    skill: 1
-    hours: 40
+    title: "Design"
+    time_start: 2015-02-15
+    time_end: 2015-03-08
+    project: 1
+
+- model: phases.Phase
+  pk: 3
+  fields:
+    title: "Frontend Development"
+    time_start: 2015-03-08
+    time_end: 2015-04-20
+    project: 1
+
+- model: phases.Phase
+  pk: 4
+  fields:
+    title: "Backend Development"
+    time_start: 2015-03-08
+    time_end: 2015-04-20
+    project: 1
+
+- model: phases.Phase
+  pk: 5
+  fields:
+    title: "Integration"
+    time_start: 2015-04-20
+    time_end: 2015-04-21
+    project: 1
+
+- model: phases.Phase
+  pk: 6
+  fields:
+    title: "Design document (second draft)"
+    time_start: 2015-04-20
+    time_end: 2015-04-26
+    project: 1
+
+- model: phases.Phase
+  pk: 7
+  fields:
+    title: "MVP"
+    time_start: 2015-04-21
+    time_end: 2015-05-24
+    project: 1
+
+
+######################
+#   REQUIRED SKILLS  #
+######################
 
 - model: skills.SkillInPhase
   pk: 1
   fields:
-    skill: 2
+    skill: 6
     phase: 1
+    required_hours: 20
+
+- model: skills.SkillInPhase
+  pk: 2
+  fields:
+    skill: 4
+    phase: 2
+    required_hours: 15
+
+- model: skills.SkillInPhase
+  pk: 3
+  fields:
+    skill: 7
+    phase: 2
+    required_hours: 15
+
+- model: skills.SkillInPhase
+  pk: 4
+  fields:
+    skill: 5
+    phase: 2
+    required_hours: 10
+
+- model: skills.SkillInPhase
+  pk: 5
+  fields:
+    skill: 5
+    phase: 3
+    required_hours: 70
+
+- model: skills.SkillInPhase
+  pk: 6
+  fields:
+    skill: 1
+    phase: 4
+    required_hours: 35
+
+- model: skills.SkillInPhase
+  pk: 7
+  fields:
+    skill: 1
+    phase: 5
+    required_hours: 10
+
+- model: skills.SkillInPhase
+  pk: 8
+  fields:
+    skill: 5
+    phase: 5
+    required_hours: 10
+
+- model: skills.SkillInPhase
+  pk: 9
+  fields:
+    skill: 6
+    phase: 6
+    required_hours: 12
+
+- model: skills.SkillInPhase
+  pk: 10
+  fields:
+    skill: 1
+    phase: 7
     required_hours: 40
+
+- model: skills.SkillInPhase
+  pk: 11
+  fields:
+    skill: 5
+    phase: 7
+    required_hours: 40
+
+- model: skills.SkillInPhase
+  pk: 12
+  fields:
+    skill: 4
+    phase: 7
+    required_hours: 40
+
+
+##################
+#   ALLOCATIONS  #
+##################
