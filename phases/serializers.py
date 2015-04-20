@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from .models import Phase
-from skills.serializers import SkillSerializer
+from skills.serializers import SkillInPhaseSerializer, SkillSerializer
 from allocations.serializers import AllocationSerializer
 
 class PhaseSerializer(serializers.ModelSerializer):
-  required_skills = SkillSerializer(many=True, read_only=True)
+  required_skills = SkillInPhaseSerializer(source='skillinphase_set', many=True)
   allocations = AllocationSerializer(many=True, read_only=True)
 
   class Meta:

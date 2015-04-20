@@ -38,3 +38,10 @@
     user: 1
     skill: 1
     hours: 40
+
+- model: skills.SkillInPhase
+  pk: 1
+  fields:
+    skill: 2
+    phase: 1
+    required_hours: 40
