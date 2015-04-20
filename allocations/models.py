@@ -8,6 +8,10 @@ class Allocation(models.Model):
   user = models.ForeignKey(User, blank=True, null=True, related_name='allocations')
   skill = models.ForeignKey(Skill, blank=True, null=True, related_name='allocations')
   hours = models.PositiveIntegerField(default=0)
+  created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+  class Meta:
+    ordering = ('created',)
 
   def __unicode__(self):
     return "%d" % hours
