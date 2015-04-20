@@ -13,5 +13,23 @@ class Phase(models.Model):
   class Meta:
     ordering = ('created',)
 
+  def save(self, *args, **kwargs):
+    super(Phase, self).save(*args, **kwargs)
+
+    try:
+      if not self.project.start and self.time_start:
+        self.project.start = self.time_start
+      if not self.project.end and self.time_end:
+        self.project.end = self.time_end
+
+      if self.project.start > self.time_start:
+        self.project.start = self.time_start
+      if self.project.end < self.time_end:
+        self.project.end = self.time_end
+
+      self.project.save()
+    except Exception as e:
+      print(e)
+
   def __unicode__(self):
     return "%s" % title
