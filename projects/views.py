@@ -4,6 +4,7 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.reverse import reverse
 
 class ProjectList(APIView):
   """
@@ -50,3 +51,15 @@ class ProjectDetail(APIView):
     project = self.get_object(pk)
     project.delete()
     return Response(status=status.HTTP_204_NO_CLIENT)
+
+class APIRoot(APIView):
+  """
+  Conductoor API
+  """
+  def get(self, request):
+    return Response({
+      'users': reverse('users', request=request),
+      'projects': reverse('projects', request=request),
+      'phases': reverse('phases', request=request),
+      'skills': reverse('skills', request=request),
+      'allocations': reverse('allocations', request=request)})
