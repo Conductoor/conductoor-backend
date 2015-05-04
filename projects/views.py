@@ -61,6 +61,9 @@ class ProjectDetail(APIView):
 class APIRoot(APIView):
   """
   Conductoor API
+  ==============
+
+  Docs are located at: [https://conductoor-api.herokuapp.com/docs/](https://conductoor-api.herokuapp.com/docs/)
   """
   def get(self, request):
     return Response({

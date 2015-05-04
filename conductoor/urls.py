@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^allocations/(?P<pk>[0-9]+)/$', allocationviews.AllocationDetail.as_view(), name='allocations-detail'),
     url(r'^require-skill/$', phasesviews.RequireSkill.as_view(), name='require-skill'),
     url(r'^api-auth/$', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^docs/', include('rest_framework_swagger.urls')),
+    url(r'^docs/', include('rest_framework_swagger.urls'), name='docs'),
     url(r'^$', projectviews.APIRoot.as_view(), name='index'),
 )
 urlpatterns = format_suffix_patterns(urlpatterns)
