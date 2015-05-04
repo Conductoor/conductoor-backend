@@ -1,5 +1,5 @@
 from .models import Allocation
-from .serializers import AllocationSerializer
+from .serializers import AllocationSerializer, AllocationPOSTSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,7 +15,7 @@ class AllocationList(APIView):
     return Response(serializer.data)
 
   def post(self, request, format=None):
-    serializer = AllocationSerializer(data=request.data)
+    serializer = AllocationPOSTSerializer(data=request.data, context={'request': request})
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -39,7 +39,7 @@ class AllocationDetail(APIView):
 
   def put(self, request, pk, format=None):
     allocation = self.get_object(pk)
-    serializer = AllocationSerializer(allocation, data=request.data)
+    serializer = AllocationPOSTSerializer(allocation, data=request.data, context={'request': request})
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data)

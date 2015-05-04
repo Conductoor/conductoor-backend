@@ -10,3 +10,12 @@ class AllocationSerializer(serializers.ModelSerializer):
   class Meta:
     model = Allocation
     fields = ('id', 'phase', 'user', 'skill', 'hours')
+
+class AllocationPOSTSerializer(serializers.HyperlinkedModelSerializer):
+  user = serializers.HyperlinkedIdentityField(view_name='users-detail')
+  phase = serializers.HyperlinkedIdentityField(view_name='phases-detail')
+  skill = serializers.HyperlinkedIdentityField(view_name='skills-detail')
+
+  class Meta:
+    model = Allocation
+    fields = ('id', 'phase', 'user', 'skill', 'hours')

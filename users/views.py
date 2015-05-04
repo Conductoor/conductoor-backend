@@ -1,5 +1,5 @@
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserPOSTSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,7 +15,7 @@ class UserList(APIView):
     return Response(serializer.data)
 
   def post(self, request, format=None):
-    serializer = UserSerializer(data=request.data)
+    serializer = UserPOSTSerializer(data=request.data, context={'request': request})
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -39,7 +39,7 @@ class UserDetail(APIView):
 
   def put(self, request, pk, format=None):
     user = self.get_object(pk)
-    serializer = UserSerializer(user, data=request.data)
+    serializer = UserPOSTSerializer(user, data=request.data, context={'request': request})
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data)
