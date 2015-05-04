@@ -1,5 +1,6 @@
 from .models import Phase
-from .serializers import PhaseSerializer
+from skills.models import SkillInPhase
+from .serializers import PhaseSerializer, PhasePOSTSerializer, RequireSkillSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,7 +16,7 @@ class PhaseList(APIView):
     return Response(serializer.data)
 
   def post(self, request, format=None):
-    serializer = PhaseSerializer(data=request.data)
+    serializer = PhasePOSTSerializer(data=request.data)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -39,7 +40,7 @@ class PhaseDetail(APIView):
 
   def put(self, request, pk, format=None):
     phase = self.get_object(pk)
-    serializer = PhaseSerializer(phase, data=request.data)
+    serializer = PhasePOSTSerializer(phase, data=request.data)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data)
@@ -50,3 +51,15 @@ class PhaseDetail(APIView):
     phase = self.get_object(pk)
     phase.delete()
     return Response(status=status.HTTP_204_NO_CLIENT)
+
+class RequireSkill(APIView):
+  """
+  Require a new skill for a phase
+  """
+  def post(self, request, format=None):
+    serializer = RequireSkillSerializer(data=request.data, context={'request': request})
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
