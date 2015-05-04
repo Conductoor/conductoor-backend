@@ -7,7 +7,12 @@ from rest_framework import status
 
 class SkillList(APIView):
   """
+  Skill
+  =====
   List all skills or create a new one
+
+  Example fields for a POST request:  
+  `"name": "Python"`
   """
   def get(self, request, format=None):
     skills = Skill.objects.all()

@@ -1,5 +1,5 @@
 from .models import Project
-from .serializers import ProjectSerializer
+from .serializers import ProjectSerializer, ProjectPOSTSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,7 +8,13 @@ from rest_framework.reverse import reverse
 
 class ProjectList(APIView):
   """
+  Project
+  =======
   List all projects or create a new one
+
+  Example fields for a POST request:  
+  `"title": "Conductoor"`  
+  `"description": "Awesome project"`
   """
   def get(self, request, format=None):
     projects = Project.objects.all()
@@ -16,7 +22,7 @@ class ProjectList(APIView):
     return Response(serializer.data)
 
   def post(self, request, format=None):
-    serializer = ProjectSerializer(data=request.data)
+    serializer = ProjectPOSTSerializer(data=request.data)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -40,7 +46,7 @@ class ProjectDetail(APIView):
 
   def put(self, request, pk, format=None):
     project = self.get_object(pk)
-    serializer = ProjectSerializer(project, data=request.data)
+    serializer = ProjectPOSTSerializer(project, data=request.data)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data)

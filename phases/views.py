@@ -8,7 +8,15 @@ from rest_framework import status
 
 class PhaseList(APIView):
   """
+  Phase
+  =====
   List all phases or create a new one
+
+  Example fields for a POST request:  
+  `"title": "Design phase"`  
+  `"time_start": "2015-04-22"`  
+  `"time_end": "2015-04-23"`  
+  `"color": "#FFFFFF"`
   """
   def get(self, request, format=None):
     phases = Phase.objects.all()
@@ -54,7 +62,16 @@ class PhaseDetail(APIView):
 
 class RequireSkill(APIView):
   """
-  Require a new skill for a phase
+  RequireSkill
+  ============
+  Require a new skill for a phase.
+
+  Unlike other POST requests, RequireSkill takes in foreign keys instead of url's.
+
+  Example fields for a POST request:  
+  `"skill": 1`  
+  `"phase": 1`  
+  `"required_hours": 40`
   """
   def post(self, request, format=None):
     serializer = RequireSkillSerializer(data=request.data, context={'request': request})

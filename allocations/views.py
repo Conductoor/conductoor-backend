@@ -7,7 +7,15 @@ from rest_framework import status
 
 class AllocationList(APIView):
   """
+  Allocation
+  ==========
   List all allocations or create a new one
+
+  Example fields for a POST request:  
+  `"user": "https://conductoor-api.herokuapp.com/users/1/"`  
+  `"phase": "https://conductoor-api.herokuapp.com/phases/1/"`  
+  `"skill": "https://conductoor-api.herokuapp.com/skills/1/"`  
+  `"hours": 40`  
   """
   def get(self, request, format=None):
     allocations = Allocation.objects.all()

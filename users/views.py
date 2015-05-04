@@ -7,7 +7,15 @@ from rest_framework import status
 
 class UserList(APIView):
   """
+  User
+  ====
   List all users or create a new one
+
+  Example fields for a POST request:  
+  `"email": "tainio.ville@gmail.com"`  
+  `"first_name": "Ville"`  
+  `"last_name": "Tainio"`  
+  `"knows": ["https://conductoor-api.herokuapp.com/skills/1/"]`
   """
   def get(self, request, format=None):
     users = User.objects.all()
