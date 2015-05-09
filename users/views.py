@@ -15,7 +15,7 @@ class UserList(APIView):
   `"email": "tainio.ville@gmail.com"`  
   `"first_name": "Ville"`  
   `"last_name": "Tainio"`  
-  `"knows": ["https://conductoor-api.herokuapp.com/skills/1/"]`
+  `"knows": [1, 2]`
   """
   def get(self, request, format=None):
     users = User.objects.all()
