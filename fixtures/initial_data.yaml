@@ -80,6 +80,22 @@
     time_start: 2015-01-23
     time_end: 2015-05-24
 
+- model: projects.Project
+  pk: 2
+  fields:
+    title: "ResourceManager 3000"
+    description: "Much better than Conductoor"
+    time_start: 2015-01-23
+    time_end: 2015-05-24
+
+- model: projects.Project
+  pk: 3
+  fields:
+    title: "New Awesome Video Game"
+    description: "It truly is awesome."
+    time_start: 2015-03-30
+    time_end: 2015-08-23
+
 ##############
 #   PHASES   #
 ##############
