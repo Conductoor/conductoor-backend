@@ -27,4 +27,4 @@ class PhasePOSTSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = Phase
-    fields = ('id', 'project', 'title', 'time_start', 'time_end', 'color', 'required_skills')
+    fields = ('id', 'project', 'title', 'time_start', 'time_end', 'description', 'color', 'required_skills')
