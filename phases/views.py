@@ -19,6 +19,7 @@ class PhaseList(APIView):
   `"project": 1`  
   `"time_start": "2015-04-22"`  
   `"time_end": "2015-04-23"`  
+  `"description": "Design of the service"`  
   `"color": "#FFFFFF"`  
   ```
   "required_skills": [

@@ -106,6 +106,7 @@
     title: "Project plan"
     time_start: 2015-01-23
     time_end: 2015-03-08
+    description: "Planning the project."
     color: "#9D344B"
     project: 1
     created: "2015-01-23T22:15:00+00:00"
@@ -116,6 +117,7 @@
     title: "Design"
     time_start: 2015-02-15
     time_end: 2015-03-08
+    description: "Designing the service."
     color: "#257059"
     project: 1
     created: "2015-01-23T22:16:00+00:00"
@@ -126,6 +128,7 @@
     title: "Frontend Development"
     time_start: 2015-03-08
     time_end: 2015-04-20
+    description: "Implementing the frontend for the service."
     color: "#8AA236"
     project: 1
     created: "2015-01-23T22:17:00+00:00"
@@ -136,6 +139,7 @@
     title: "Backend Development"
     time_start: 2015-03-08
     time_end: 2015-04-20
+    description: "Implementing the backend for the service."
     project: 1
     created: "2015-01-23T22:18:00+00:00"
 
@@ -145,6 +149,7 @@
     title: "Integration"
     time_start: 2015-04-20
     time_end: 2015-04-21
+    description: "Integrating the frontend and the backend."
     project: 1
     created: "2015-01-23T22:19:00+00:00"
 
@@ -154,6 +159,7 @@
     title: "Design document (second draft)"
     time_start: 2015-04-20
     time_end: 2015-04-26
+    description: "Writing the second draft of the design document."
     project: 1
     created: "2015-01-23T22:20:00+00:00"
 
@@ -163,6 +169,7 @@
     title: "MVP"
     time_start: 2015-04-21
     time_end: 2015-05-24
+    description: "Creating the MVP (Minimum Viable Product)."
     project: 1
     created: "2015-01-23T22:21:00+00:00"
 
