@@ -6,6 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+import json
+
 class PhaseList(APIView):
   """
   Phase
@@ -17,7 +19,14 @@ class PhaseList(APIView):
   `"project": 1`  
   `"time_start": "2015-04-22"`  
   `"time_end": "2015-04-23"`  
-  `"color": "#FFFFFF"`
+  `"color": "#FFFFFF"`  
+  ```
+  "required_skills": [
+  {
+    "skill": 1,
+    "required_hours": 40
+  }]
+  ```
   """
   def get(self, request, format=None):
     phases = Phase.objects.all()
@@ -25,9 +34,27 @@ class PhaseList(APIView):
     return Response(serializer.data)
 
   def post(self, request, format=None):
+    required_skills = ''
+    if 'required_skills' in request.data:
+      required_skills = request.data['required_skills']
+      request.data.pop('required_skills')
+
     serializer = PhasePOSTSerializer(data=request.data)
     if serializer.is_valid():
-      serializer.save()
+      phase = serializer.save()
+
+      # Add required_skills as an own Serializer
+      if required_skills:
+        required_dict = required_skills[0]
+        required_dict['phase'] = phase.pk
+
+        required_serializer = RequireSkillSerializer(data=required_dict)
+        if required_serializer.is_valid():
+          required_serializer.save()
+          return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+          return Response(required_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
       return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

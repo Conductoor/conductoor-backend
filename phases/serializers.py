@@ -13,17 +13,18 @@ class PhaseSerializer(serializers.ModelSerializer):
     model = Phase
     fields = ('id', 'title', 'time_start', 'time_end', 'color', 'required_skills', 'allocations')
 
-class PhasePOSTSerializer(serializers.HyperlinkedModelSerializer):
-  project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
-
-  class Meta:
-    model = Phase
-    fields = ('id', 'project', 'title', 'time_start', 'time_end', 'color')
-
-class RequireSkillSerializer(serializers.HyperlinkedModelSerializer):
+class RequireSkillSerializer(serializers.ModelSerializer):
   skill = serializers.PrimaryKeyRelatedField(queryset=Skill.objects.all())
   phase = serializers.PrimaryKeyRelatedField(queryset=Phase.objects.all())
 
   class Meta:
     model = SkillInPhase
     fields = ('id', 'skill', 'phase', 'required_hours')
+
+
+class PhasePOSTSerializer(serializers.ModelSerializer):
+  project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all())
+
+  class Meta:
+    model = Phase
+    fields = ('id', 'project', 'title', 'time_start', 'time_end', 'color', 'required_skills')
