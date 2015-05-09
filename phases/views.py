@@ -14,6 +14,7 @@ class PhaseList(APIView):
 
   Example fields for a POST request:  
   `"title": "Design phase"`  
+  `"project": 1`  
   `"time_start": "2015-04-22"`  
   `"time_end": "2015-04-23"`  
   `"color": "#FFFFFF"`
