@@ -140,6 +140,7 @@
     time_start: 2015-03-08
     time_end: 2015-04-20
     description: "Implementing the backend for the service."
+    color: "26569F"
     project: 1
     created: "2015-01-23T22:18:00+00:00"
 
@@ -150,6 +151,7 @@
     time_start: 2015-04-20
     time_end: 2015-04-21
     description: "Integrating the frontend and the backend."
+    color: "ABA934"
     project: 1
     created: "2015-01-23T22:19:00+00:00"
 
@@ -160,6 +162,7 @@
     time_start: 2015-04-20
     time_end: 2015-04-26
     description: "Writing the second draft of the design document."
+    color: "CA4775"
     project: 1
     created: "2015-01-23T22:20:00+00:00"
 
@@ -170,6 +173,7 @@
     time_start: 2015-04-21
     time_end: 2015-05-24
     description: "Creating the MVP (Minimum Viable Product)."
+    color: "2CA422"
     project: 1
     created: "2015-01-23T22:21:00+00:00"
 
