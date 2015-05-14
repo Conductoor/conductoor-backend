@@ -57,4 +57,4 @@ class AllocationDetail(APIView):
   def delete(self, request, pk, format=None):
     allocation = self.get_object(pk)
     allocation.delete()
-    return Response(status=status.HTTP_204_NO_CLIENT)
+    return Response(status=status.HTTP_204_NO_CONTENT)

@@ -54,4 +54,4 @@ class SkillDetail(APIView):
   def delete(self, request, pk, format=None):
     skill = self.get_object(pk)
     skill.delete()
-    return Response(status=status.HTTP_204_NO_CLIENT)
+    return Response(status=status.HTTP_204_NO_CONTENT)

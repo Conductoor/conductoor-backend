@@ -87,7 +87,7 @@ class PhaseDetail(APIView):
   def delete(self, request, pk, format=None):
     phase = self.get_object(pk)
     phase.delete()
-    return Response(status=status.HTTP_204_NO_CLIENT)
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 class RequireSkill(APIView):
   """
