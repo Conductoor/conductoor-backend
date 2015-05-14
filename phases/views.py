@@ -56,7 +56,7 @@ class PhaseList(APIView):
           else:
             return Response(required_serializer.errors, status=HTTP_400_BAD_REQUEST)
 
-        return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
       return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -78,11 +78,28 @@ class PhaseDetail(APIView):
     return Response(serializer.data)
 
   def put(self, request, pk, format=None):
+    required_skills = ''
+    if 'required_skills' in request.data:
+      required_skills = request.data['required_skills']
+      request.data.pop('required_skills')
+
     phase = self.get_object(pk)
-    serializer = PhasePOSTSerializer(phase, data=request.data)
+    serializer = PhasePOSTSerializer(phase, data=request.data, partial=True)
     if serializer.is_valid():
       serializer.save()
-      return Response(serializer.data)
+
+      if required_skills:
+        for skill in required_skills:
+          required_dict = skill
+          required_dict['phase'] = pk
+
+          required_serializer = RequireSkillSerializer(data=required_dict)
+          if required_serializer.is_valid():
+            required_serializer.save()
+          else:
+            return Response(required_serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
