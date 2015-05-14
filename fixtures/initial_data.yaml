@@ -107,7 +107,7 @@
     time_start: 2015-01-23
     time_end: 2015-03-08
     description: "Planning the project."
-    color: "#9D344B"
+    color: "9D344B"
     project: 1
     created: "2015-01-23T22:15:00+00:00"
 
@@ -118,7 +118,7 @@
     time_start: 2015-02-15
     time_end: 2015-03-08
     description: "Designing the service."
-    color: "#257059"
+    color: "257059"
     project: 1
     created: "2015-01-23T22:16:00+00:00"
 
@@ -129,7 +129,7 @@
     time_start: 2015-03-08
     time_end: 2015-04-20
     description: "Implementing the frontend for the service."
-    color: "#8AA236"
+    color: "8AA236"
     project: 1
     created: "2015-01-23T22:17:00+00:00"
 
