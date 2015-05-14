@@ -46,15 +46,17 @@ class PhaseList(APIView):
 
       # Add required_skills as an own Serializer
       if required_skills:
-        required_dict = required_skills[0]
-        required_dict['phase'] = phase.pk
+        for skill in required_skills:
+          required_dict = skill
+          required_dict['phase'] = phase.pk
 
-        required_serializer = RequireSkillSerializer(data=required_dict)
-        if required_serializer.is_valid():
-          required_serializer.save()
-          return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-          return Response(required_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+          required_serializer = RequireSkillSerializer(data=required_dict)
+          if required_serializer.is_valid():
+            required_serializer.save()
+          else:
+            return Response(required_serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+        return Response(serializer.data, status.HTTP_201_CREATED)
 
       return Response(serializer.data, status=status.HTTP_201_CREATED)
 
