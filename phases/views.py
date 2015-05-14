@@ -89,6 +89,10 @@ class PhaseDetail(APIView):
       serializer.save()
 
       if required_skills:
+        # Remove old required skills from the phase
+        old_skills = SkillInPhase.objects.filter(phase__pk=pk)
+        old_skills.delete()
+
         for skill in required_skills:
           required_dict = skill
           required_dict['phase'] = pk
@@ -99,7 +103,7 @@ class PhaseDetail(APIView):
           else:
             return Response(required_serializer.errors, status=HTTP_400_BAD_REQUEST)
 
-      return Response(serializer.data, status=status.HTTP_201_CREATED)
+      return Response(serializer.data)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
