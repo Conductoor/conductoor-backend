@@ -44,7 +44,7 @@ class SkillDetail(APIView):
 
   def put(self, request, pk, format=None):
     skill = self.get_object(pk)
-    serializer = SkillSerializer(skill, data=request.data)
+    serializer = SkillSerializer(skill, data=request.data, partial=True)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data)

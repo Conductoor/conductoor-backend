@@ -23,7 +23,7 @@ class UserList(APIView):
     return Response(serializer.data)
 
   def post(self, request, format=None):
-    serializer = UserPOSTSerializer(data=request.data, context={'request': request})
+    serializer = UserPOSTSerializer(data=request.data)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -47,7 +47,7 @@ class UserDetail(APIView):
 
   def put(self, request, pk, format=None):
     user = self.get_object(pk)
-    serializer = UserPOSTSerializer(user, data=request.data, context={'request': request})
+    serializer = UserPOSTSerializer(user, data=request.data, partial=True)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data)

@@ -23,7 +23,7 @@ class AllocationList(APIView):
     return Response(serializer.data)
 
   def post(self, request, format=None):
-    serializer = AllocationPOSTSerializer(data=request.data, context={'request': request})
+    serializer = AllocationPOSTSerializer(data=request.data)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -47,7 +47,7 @@ class AllocationDetail(APIView):
 
   def put(self, request, pk, format=None):
     allocation = self.get_object(pk)
-    serializer = AllocationPOSTSerializer(allocation, data=request.data, context={'request': request})
+    serializer = AllocationPOSTSerializer(allocation, data=request.data, partial=True)
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data)

@@ -14,7 +14,7 @@ class AllocationSerializer(serializers.ModelSerializer):
     model = Allocation
     fields = ('id', 'phase', 'user', 'skill', 'hours')
 
-class AllocationPOSTSerializer(serializers.HyperlinkedModelSerializer):
+class AllocationPOSTSerializer(serializers.ModelSerializer):
   user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
   phase = serializers.PrimaryKeyRelatedField(queryset=Phase.objects.all())
   skill = serializers.PrimaryKeyRelatedField(queryset=Skill.objects.all())

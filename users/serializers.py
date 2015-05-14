@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
     model = User
     fields = ('id', 'email', 'first_name', 'last_name', 'knows')
 
-class UserPOSTSerializer(serializers.HyperlinkedModelSerializer):
+class UserPOSTSerializer(serializers.ModelSerializer):
   knows = serializers.PrimaryKeyRelatedField(many=True, queryset=Skill.objects.all())
 
   class Meta:
