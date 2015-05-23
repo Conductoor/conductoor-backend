@@ -78,6 +78,10 @@ class AvailableUser(APIView):
     except MultiValueDictKeyError:
       return Response(status=status.HTTP_400_BAD_REQUEST)
 
+    if time_start > time_end:
+      return Response({'error': 'time_start was larger than time_end'},
+        status=status.HTTP_400_BAD_REQUEST)
+
     users = User.objects.all()
     result = []
     working_days = workdays.networkdays(time_start, time_end)
