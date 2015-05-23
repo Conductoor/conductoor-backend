@@ -87,13 +87,13 @@ class AvailableUser(APIView):
         # User is already in another project.
         latest_allocation = Allocation.objects.filter(user__pk=user.pk).order_by('phase__time_end')[:1]
         available_hours = working_days * user.available_hours_during_project
-        result.append({"user_id": user.pk, "free_now": False,
+        result.append({"id": user.pk, "free_now": False,
           "available_hours": available_hours, "phase_id": latest_allocation[0].phase.pk})
 
       else:
         # User isn't allocated to any project at the moment.
         available_hours = working_days * (user.working_hours / 5.0)
-        result.append({"user_id": user.pk, "free_now": True,
+        result.append({"id": user.pk, "free_now": True,
           "available_hours": available_hours})
 
     return Response(result)
