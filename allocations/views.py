@@ -56,5 +56,8 @@ class AllocationDetail(APIView):
 
   def delete(self, request, pk, format=None):
     allocation = self.get_object(pk)
+    if allocation.user.in_project == allocation.phase.time_end:
+      allocation.user.in_project = None
+      allocation.user.save()
     allocation.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
