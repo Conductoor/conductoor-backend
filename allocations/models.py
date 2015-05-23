@@ -35,14 +35,14 @@ class Allocation(models.Model):
       if project_hours_per_day >= self.user.available_hours_during_project:
         self.user.available_hours_during_project = 0.0
       else:
-        self.user.available_hours_during_project = self.available_hours_during_project - project_hours_per_day
+        self.user.available_hours_during_project = self.user.available_hours_during_project - project_hours_per_day
 
     elif self.user.in_project and self.user.in_project <= self.phase.time_end:
       self.user.in_project = self.phase.time_end
       if project_hours_per_day >= self.user.available_hours_during_project:
         self.user.available_hours_during_project = 0.0
       else:
-        self.user.available_hours_during_project = self.available_hours_during_project - project_hours_per_day
+        self.user.available_hours_during_project = self.user.available_hours_during_project - project_hours_per_day
 
     else:
       self.user.in_project = self.phase.time_end
