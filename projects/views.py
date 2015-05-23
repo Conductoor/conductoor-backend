@@ -72,4 +72,5 @@ class APIRoot(APIView):
       'phases': reverse('phases', request=request),
       'skills': reverse('skills', request=request),
       'allocations': reverse('allocations', request=request),
-      'require-skill': reverse('require-skill', request=request)})
+      'require-skill': reverse('require-skill', request=request),
+      'available-users': reverse('available-users', request=request)})

@@ -47,7 +47,7 @@
     email: "tainio.ville@gmail.com"
     first_name: "Ville"
     last_name: "Tainio"
-    working_hours: 8
+    working_hours: 40
     knows: [1, 2]
 
 - model: users.User
@@ -56,7 +56,7 @@
     email: "teemu.taskula@aalto.fi"
     first_name: "Teemu"
     last_name: "Taskula"
-    working_hours: 8
+    working_hours: 40
     knows: [5, 4, 3]
 
 - model: users.User
@@ -65,7 +65,7 @@
     email: "ville.j.toiviainen@aalto.fi"
     first_name: "Ville"
     last_name: "Toiviainen"
-    working_hours: 8
+    working_hours: 40
     knows: [2, 5, 1]
 
 ###############

@@ -11,3 +11,4 @@ gunicorn==19.3.0
 psycopg2==2.6
 pytz==2015.2
 static3==0.5.1
+workdays==1.4
