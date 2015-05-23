@@ -5,7 +5,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 class AllocationList(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Allocation
   ==========
@@ -31,6 +36,8 @@ class AllocationList(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AllocationDetail(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Retrieve, update or delete an allocation instance
   """

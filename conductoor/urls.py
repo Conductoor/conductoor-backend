@@ -5,6 +5,7 @@ from projects import views as projectviews
 from phases import views as phasesviews
 from skills import views as skillviews
 from allocations import views as allocationviews
+from rest_framework.authtoken import views as authviews
 
 urlpatterns = patterns('',
     url(r'^users/$', userviews.UserList.as_view(), name='users'),
@@ -21,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^available-users/$', userviews.AvailableUser.as_view(), name='available-users'),
     url(r'^api-auth/$', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls'), name='docs'),
+    url(r'^login/$', userviews.LoginView.as_view(), name='login'),
     url(r'^$', projectviews.APIRoot.as_view(), name='index'),
 )
 urlpatterns = format_suffix_patterns(urlpatterns)

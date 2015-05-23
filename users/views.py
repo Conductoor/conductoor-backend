@@ -1,16 +1,23 @@
 from .models import User
 from allocations.models import Allocation
-from .serializers import UserSerializer, UserPOSTSerializer
+from .serializers import UserSerializer, UserPOSTSerializer, LoginSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.utils.datastructures import MultiValueDictKeyError
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 import workdays
 import datetime
 
 class UserList(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   User
   ====
@@ -37,6 +44,8 @@ class UserList(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserDetail(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Retrieve, update or delete an user instance
   """
@@ -66,6 +75,8 @@ class UserDetail(APIView):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 class AvailableUser(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Find out if user is available or not. URL parameters required for the request:  
   `time_start=2015-05-2`  
@@ -101,3 +112,15 @@ class AvailableUser(APIView):
           "available_hours": available_hours})
 
     return Response(result)
+
+class LoginView(APIView):
+  def post(self, request, format=None):
+    serializer = LoginSerializer(data=request.data)
+    if serializer.is_valid():
+      user = authenticate(email=serializer.validated_data['email'], password=serializer.validated_data['password'])
+      if user:
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key})
+
+      return Response({'error': 'invalid username or password'})
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
