@@ -83,5 +83,4 @@ class APIRoot(APIView):
       'available-users': reverse('available-users', request=request),
       'request-user': reverse('request-user', request=request),
       'request-beta': reverse('request-beta', request=request),
-      'show-beta': reverse('show-beta', request=request),
-      'change-password': reverse('change-password', request=request)})
+      'show-beta': reverse('show-beta', request=request)})
