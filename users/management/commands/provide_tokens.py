@@ -3,7 +3,7 @@ from users.models import User
 from rest_framework.authtoken.models import Token
 
 class Command(BaseCommand):
-  help = 'Provide tokens for users'
+  help = 'Provide tokens for users and default password (password) for users without one.'
 
   def handle(self, *args, **kwargs):
     for user in User.objects.all():
