@@ -81,4 +81,6 @@ class APIRoot(APIView):
       'allocations': reverse('allocations', request=request),
       'require-skill': reverse('require-skill', request=request),
       'available-users': reverse('available-users', request=request),
-      'request-user': reverse('request-user', request=request)})
+      'request-user': reverse('request-user', request=request),
+      'request-beta': reverse('request-beta', request=request),
+      'show-beta': reverse('show-beta', request=request)})

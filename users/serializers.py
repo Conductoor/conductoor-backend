@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, BetaRequest
 from skills.serializers import SkillSerializer
 from skills.models import Skill
 
@@ -25,3 +25,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
     fields = ('id', 'email', 'first_name', 'last_name')
+
+class RequestBetaSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = BetaRequest
+    fields = ('id', 'email')
