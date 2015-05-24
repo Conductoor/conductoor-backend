@@ -1,6 +1,6 @@
 from .models import User, BetaRequest
 from allocations.models import Allocation
-from .serializers import UserSerializer, UserPOSTSerializer, LoginSerializer, CreateUserSerializer, RequestBetaSerializer
+from .serializers import UserSerializer, UserPOSTSerializer, LoginSerializer, CreateUserSerializer, RequestBetaSerializer, ChangePasswordSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -177,5 +177,17 @@ class RequestBeta(APIView):
     if serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ChangePassword(APIView):
+  def post(self, request, pk, format=None):
+    serializer = ChangePasswordSerializer(data=request.data)
+    if serializer.is_valid():
+      if serializer.validated_data['password'] == serializer.validated_data['password_validate']:
+        user = User.objects.get(pk=pk)
+        user.set_password(serializer.validated_data['password'])
+        user.save()
+        return Response({'message': 'password saved'}, status=status.HTTP_200_OK)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

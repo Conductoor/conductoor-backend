@@ -30,3 +30,7 @@ class RequestBetaSerializer(serializers.ModelSerializer):
   class Meta:
     model = BetaRequest
     fields = ('id', 'email')
+
+class ChangePasswordSerializer(serializers.Serializer):
+  password = serializers.CharField(max_length=100, required=True)
+  password_validate = serializers.CharField(max_length=100, required=True)

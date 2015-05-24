@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^request-user/$', userviews.CreateUser.as_view(), name='request-user'),
     url(r'^request-beta/$', userviews.RequestBeta.as_view(), name='request-beta'),
     url(r'^show-beta/$', userviews.ShowBeta.as_view(), name='show-beta'),
+    url(r'^change-password/(?P<pk>[0-9]+)/$', userviews.ChangePassword.as_view(), name='change-password'),
     url(r'^$', projectviews.APIRoot.as_view(), name='index'),
 )
 urlpatterns = format_suffix_patterns(urlpatterns)
