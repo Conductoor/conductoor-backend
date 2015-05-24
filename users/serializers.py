@@ -8,14 +8,14 @@ class UserSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = User
-    fields = ('id', 'email', 'first_name', 'last_name', 'knows')
+    fields = ('id', 'email', 'first_name', 'last_name', 'knows', 'working_hours')
 
 class UserPOSTSerializer(serializers.ModelSerializer):
   knows = serializers.PrimaryKeyRelatedField(many=True, queryset=Skill.objects.all())
 
   class Meta:
     model = User
-    fields = ('id', 'email', 'first_name', 'last_name', 'knows')
+    fields = ('id', 'email', 'first_name', 'last_name', 'knows', 'working_hours')
 
 class LoginSerializer(serializers.Serializer):
   email = serializers.EmailField(required=True)
