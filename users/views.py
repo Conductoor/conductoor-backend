@@ -122,7 +122,7 @@ class LoginView(APIView):
       user = authenticate(email=serializer.validated_data['email'], password=serializer.validated_data['password'])
       if user:
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key}, status=status.HTTP_200_OK)
+        return Response({'token': token.key, 'user_id': user.pk}, status=status.HTTP_200_OK)
 
       return Response({'error': 'invalid username or password'}, status=status.HTTP_400_BAD_REQUEST)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
