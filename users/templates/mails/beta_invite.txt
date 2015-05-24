@@ -1,0 +1,10 @@
+Hi,
+
+Welcome to the Conductoor Beta! 
+
+You can now log in with this email address at http://conductoor.villetainio.com/
+
+Your password is: {{password}}
+
+Br,
+Conductoor Team
