@@ -1,6 +1,6 @@
 from .models import User
 from allocations.models import Allocation
-from .serializers import UserSerializer, UserPOSTSerializer, LoginSerializer
+from .serializers import UserSerializer, UserPOSTSerializer, LoginSerializer, CreateUserSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,6 +8,8 @@ from rest_framework import status
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -120,7 +122,42 @@ class LoginView(APIView):
       user = authenticate(email=serializer.validated_data['email'], password=serializer.validated_data['password'])
       if user:
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key})
+        return Response({'token': token.key}, status=status.HTTP_200_OK)
 
-      return Response({'error': 'invalid username or password'})
+      return Response({'error': 'invalid username or password'}, status=status.HTTP_400_BAD_REQUEST)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CreateUser(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
+  """
+  Create a new user for the application. Password will be emailed to the user.  
+
+  Fields for the request:
+  `"email": "tainio.ville@gmail.com"`  
+  `"first_name": "Ville"`  
+  `"last_name": "Tainio"`  
+  """
+  def post(self, request, format=None):
+    serializer = CreateUserSerializer(data=request.data)
+    if serializer.is_valid():
+      user = serializer.save()
+      password = User.objects.make_random_password()
+      user.set_password(password)
+      user.save()
+      # Create an auth token for the user.
+      Token.objects.get_or_create(user=user)
+
+      # Send an email to the created user containing their password.
+      mail = EmailMultiAlternatives(
+        subject='Welcome to Conductoor',
+        body=render_to_string('mails/welcome.txt', {'first_name': user.first_name,
+          'last_name': user.last_name, 'password': password}),
+        from_email='noreply@conductoor.villetainio.com',
+        to=[user.email],
+      )
+
+      mail.send()
+      return Response({'message': 'email sent'}, status=status.HTTP_200_OK)
+
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

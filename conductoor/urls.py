@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^api-auth/$', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls'), name='docs'),
     url(r'^login/$', userviews.LoginView.as_view(), name='login'),
+    url(r'^request-user/$', userviews.CreateUser.as_view(), name='request-user'),
     url(r'^$', projectviews.APIRoot.as_view(), name='index'),
 )
 urlpatterns = format_suffix_patterns(urlpatterns)
