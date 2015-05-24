@@ -47,11 +47,13 @@ INSTALLED_APPS = (
     'phases',
     'skills',
     'allocations',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -111,6 +113,10 @@ SWAGGER_SETTINGS = {
     },
     'doc_expansion': 'none',
 }
+
+CORS_ORIGIN_WHITELIST = (
+    'conductoor.villetainio.com'
+)
 
 
 # Static files (CSS, JavaScript, Images)
