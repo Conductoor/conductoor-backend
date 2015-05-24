@@ -23,4 +23,5 @@ Other
 Destroying the database and loading the initial data in Heroku:  
 `heroku pg:reset DATABASE_URL`  
 `heroku run python3 manage.py syncdb` (answer no for superuser)  
-`python3 manage.py loaddata fixtures/initial_data.yaml`
+`heroku run python3 manage.py loaddata fixtures/initial_data.yaml`  
+`heroku run python3 manage.py provide_tokens`

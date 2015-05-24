@@ -8,3 +8,6 @@ class Command(BaseCommand):
   def handle(self, *args, **kwargs):
     for user in User.objects.all():
       Token.objects.get_or_create(user=user)
+      if not user.password:
+        user.set_password('password')
+        user.save()
