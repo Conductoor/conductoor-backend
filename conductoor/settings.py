@@ -27,6 +27,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR), 'users/templates']
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -123,11 +125,25 @@ REST_FRAMEWORK = {
     ),
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 if "DYNO" in os.environ:
     import dj_database_url
     DATABASES = {}
     DATABASES['default'] = dj_database_url.config()
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    # Sendgrid settings
+    EMAIL_BACKEND = "sgbackend.SendGridBackend"
+    if 'SENDGRID_USER' in os.environ:
+        SENDGRID_USER = os.environ['SENDGRID_USER']
+    else:
+        SENDGRID_USER = ''
+
+    if 'SENDGRID_PASSWORD' in os.environ:
+        SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    else:
+        SENDGRID_PASSWORD = ''
 
     ALLOWED_HOSTS = ['*']

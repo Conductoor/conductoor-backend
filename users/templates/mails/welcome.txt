@@ -1,0 +1,8 @@
+Hi {{first_name}} {{last_name}},
+
+Welcome to conductoor. Conductoor is a resource management tool designed to provide information about organization’s projects. An account has been created for you and you can now log in at http://conductoor.villetainio.com/ with this email address.
+
+Your password is: {{password}}
+
+Br,
+Conductoor Team
