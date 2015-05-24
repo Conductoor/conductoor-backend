@@ -16,3 +16,7 @@ class UserPOSTSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
     fields = ('id', 'email', 'first_name', 'last_name', 'knows')
+
+class LoginSerializer(serializers.Serializer):
+  email = serializers.EmailField()
+  password = serializers.CharField(max_length=100)

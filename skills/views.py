@@ -5,7 +5,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 class SkillList(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Skill
   =====
@@ -28,6 +33,8 @@ class SkillList(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SkillDetail(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Retrieve, update or delete an skill instance
   """

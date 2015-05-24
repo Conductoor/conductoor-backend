@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'phases',
     'skills',
     'allocations',
+    'rest_framework.authtoken'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,12 +117,9 @@ SWAGGER_SETTINGS = {
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
-REST_FRAMEWOKR = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 

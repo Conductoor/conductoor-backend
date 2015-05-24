@@ -6,9 +6,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 import json
 
 class PhaseList(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Phase
   =====
@@ -63,6 +68,8 @@ class PhaseList(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PhaseDetail(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   Retrieve, update or delete a phase instance
   """
@@ -113,6 +120,8 @@ class PhaseDetail(APIView):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 class RequireSkill(APIView):
+  authentication_classes = (TokenAuthentication,)
+  permission_classes = (IsAuthenticated,)
   """
   RequireSkill
   ============
