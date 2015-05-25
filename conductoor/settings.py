@@ -115,7 +115,8 @@ SWAGGER_SETTINGS = {
 }
 
 CORS_ORIGIN_WHITELIST = (
-    'conductoor.villetainio.com'
+    'conductoor.villetainio.com',
+    '46.105.141.208'
 )
 
 
